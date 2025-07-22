@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/constants/padding.dart';
-import '../../widget_models/loader/full_screen_loader.dart';
+import 'package:shartflix/core/extention/numX.dart';
+import '../../core/constant/padding.dart';
+import '../../widget/loader/loader.dart';
 import '../../responsive/responsive.dart';
 
 class BaseScreen extends StatelessWidget {
@@ -124,7 +125,7 @@ class _Body extends StatelessWidget {
             : const SizedBox(),
         Padding(
           padding: hasDefaultScreenPadding!
-              ? Shartflix.screenHorizontalPadding
+              ? ShartflixPadding.screenHorizontalPadding
               : EdgeInsets.zero,
           child: child,
         ),

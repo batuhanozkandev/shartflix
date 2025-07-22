@@ -1,4 +1,5 @@
 import 'package:get/get_navigation/src/root/internacionalization.dart';
+import 'package:shartflix/language/tr_TR.dart';
 
 import 'en_US.dart';
 

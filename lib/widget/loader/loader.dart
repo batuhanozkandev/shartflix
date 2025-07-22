@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/core/extention/numX.dart';
 
 class FullScreenLoader extends StatelessWidget {
   const FullScreenLoader({super.key, this.progressColor});
