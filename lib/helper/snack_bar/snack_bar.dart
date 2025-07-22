@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/constants/color.dart';
-import '../../core/constants/radius.dart';
+import 'package:shartflix/core/extention/numX.dart';
 
+import '../../core/constant/color.dart';
+import '../../core/constant/radius.dart';
 class AppSnackBar {
   static void show({
     required int statusCode,
