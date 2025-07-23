@@ -45,6 +45,7 @@ class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: UniqueKey(),
+      backgroundColor: Get.theme.colorScheme.secondary,
       extendBody: true,
       body: Stack(
         children: [

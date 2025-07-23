@@ -19,6 +19,7 @@ dependencies:
   hive: ^2.2.3
   responsive_builder: ^0.7.1
   hive_flutter: ^1.1.0
+  http: ^1.4.0
 
 dev_dependencies:
   flutter_test:

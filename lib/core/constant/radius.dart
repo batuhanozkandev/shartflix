@@ -1,5 +1,5 @@
 class ShartflixRadius {
-  static double get buttonRadius => 16.0;
+  static double get buttonRadius => 18.0;
 
   static double get inputFieldRadius => 8.0;
 
