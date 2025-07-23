@@ -5,6 +5,7 @@ import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
 import 'package:shartflix/widget/button/social_button.dart';
 
+import '../widget/button/add_button.dart';
 import '../widget/button/back_button.dart';
 
 class ComponentScreen extends StatelessWidget {
@@ -35,6 +36,8 @@ class _Mobile extends StatelessWidget {
               ShartComponentPrimaryButton(text: 'Primary Button', onTap: () {}),
               4.yh,
               SocialRow(),
+              4.yh,
+              ShartComponentAddButton(),
             ],
           ),
         ),
