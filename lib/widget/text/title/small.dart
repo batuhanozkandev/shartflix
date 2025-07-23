@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ShartComponentSmallText extends StatelessWidget {
-  const ShartComponentSmallText({super.key, required this.text});
+class ShartComponentSmallTitle extends StatelessWidget {
+  const ShartComponentSmallTitle({super.key, required this.text});
 
   final String text;
 
