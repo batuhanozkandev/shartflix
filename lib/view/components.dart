@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/core/constant/color.dart';
+import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
@@ -7,6 +9,7 @@ import 'package:shartflix/widget/button/social_button.dart';
 
 import '../widget/button/add_button.dart';
 import '../widget/button/back_button.dart';
+import '../widget/button/bottom_nav_button.dart';
 import '../widget/button/follow_button.dart';
 import '../widget/button/primary_button_with_icon.dart';
 
@@ -48,9 +51,12 @@ class _Mobile extends StatelessWidget {
                 height: 4.h,
                 child: ShartComponentPrimaryButtonWithIcon(
                   text: 'Sınırlı Teklif',
-                  onTap: () {}, iconPath: 'assets/icons/ic_diamond.svg',
+                  onTap: () {},
+                  iconPath: 'assets/icons/ic_diamond.svg',
                 ),
               ),
+              4.yh,
+              ShartBottomNavBar(),
             ],
           ),
         ),
