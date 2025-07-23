@@ -25,16 +25,17 @@ class _ShartComponentSocialButton extends StatelessWidget {
         width: 16.w,
         height: 16.w,
         decoration: BoxDecoration(
+          color: ColorConstants.buttonBackground,
           borderRadius: BorderRadius.circular(ShartflixRadius.buttonRadius),
-          border: Border.all(
-            color: ColorConstants.borderColor,
-            width: 1.0,
-          )
+          border: Border.all(color: ColorConstants.borderColor, width: 1.0),
         ),
         child: Center(
           child: SvgPicture.asset(
             'assets/icons/social/ic_${type.name}.svg',
-            colorFilter: ColorFilter.mode(ColorConstants.socialIconColor, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              ColorConstants.socialIconColor,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       ),
@@ -42,11 +43,8 @@ class _ShartComponentSocialButton extends StatelessWidget {
   }
 }
 
-
 class SocialRow extends StatelessWidget {
-  const SocialRow({
-    super.key,
-  });
+  const SocialRow({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +53,9 @@ class SocialRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _ShartComponentSocialButton(
-            type: SocialType.google,
-            onTap: () {},
-          ),
-          _ShartComponentSocialButton(
-            type: SocialType.apple,
-            onTap: () {},
-          ),
-          _ShartComponentSocialButton(
-            type: SocialType.facebook,
-            onTap: () {},
-          ),
+          _ShartComponentSocialButton(type: SocialType.google, onTap: () {}),
+          _ShartComponentSocialButton(type: SocialType.apple, onTap: () {}),
+          _ShartComponentSocialButton(type: SocialType.facebook, onTap: () {}),
         ],
       ),
     );
