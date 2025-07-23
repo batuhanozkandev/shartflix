@@ -7,6 +7,7 @@ import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
 import 'package:shartflix/widget/button/social_button.dart';
+import 'package:shartflix/widget/card/movie.dart';
 import 'package:shartflix/widget/input/input_field.dart';
 import 'package:shartflix/widget/text/body/medium.dart';
 import 'package:shartflix/widget/text/body/small.dart';
@@ -51,6 +52,24 @@ class ComponentScreen extends StatelessWidget {
           ShartComponentSmallBody(
             text: 'Underlined Large Body Text',
             hasUnderline: true,
+          ),
+          2.yh,
+          GridView.builder(
+            shrinkWrap: true,
+            itemCount: 3,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 4.w,
+              crossAxisSpacing: 4.w,
+              childAspectRatio: 0.65,
+            ),
+            itemBuilder: (_, index) {
+              return MovieCard(
+                imageUrl: 'https://via.placeholder.com/150',
+                title: 'Movie Title',
+                subtitle: 'Movie Subtitle',
+              );
+            },
           ),
           2.yh,
           ShartFlixInputField(
