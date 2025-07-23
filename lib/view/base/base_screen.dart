@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import '../../core/constant/padding.dart';
 import '../../widget/loader/loader.dart';
@@ -45,7 +46,7 @@ class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: UniqueKey(),
-      backgroundColor: Get.theme.colorScheme.secondary,
+      backgroundColor: ColorConstants.background,
       extendBody: true,
       body: Stack(
         children: [

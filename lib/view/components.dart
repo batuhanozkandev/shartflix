@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
+import 'package:shartflix/widget/button/social_button.dart';
 
 class ComponentScreen extends StatelessWidget {
   const ComponentScreen({super.key});
@@ -26,6 +27,8 @@ class _Mobile extends StatelessWidget {
             children: [
               12.yh,
               ShartComponentPrimaryButton(text: 'Primary Button', onTap: () {}),
+              4.yh,
+              SocialRow(),
             ],
           ),
         ),
@@ -33,3 +36,4 @@ class _Mobile extends StatelessWidget {
     );
   }
 }
+
