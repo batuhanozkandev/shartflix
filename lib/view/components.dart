@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/radius.dart';
@@ -6,6 +7,7 @@ import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
 import 'package:shartflix/widget/button/social_button.dart';
+import 'package:shartflix/widget/input/input_field.dart';
 import 'package:shartflix/widget/text/body/medium.dart';
 import 'package:shartflix/widget/text/body/small.dart';
 import 'package:shartflix/widget/text/title/medium.dart';
@@ -50,6 +52,42 @@ class ComponentScreen extends StatelessWidget {
             text: 'Underlined Large Body Text',
             hasUnderline: true,
           ),
+          2.yh,
+          ShartFlixInputField(
+            hintText: 'Input Field',
+            prefixIcon: SvgPicture.asset(
+              'assets/icons/auth/ic_email.svg',
+              width: 16,
+              height: 16,
+              colorFilter: ColorFilter.mode(
+                Get.theme.colorScheme.secondary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          2.yh,
+          ShartFlixInputField(
+            hintText: 'Şifre',
+            prefixIcon: SvgPicture.asset(
+              'assets/icons/auth/ic_password.svg',
+              width: 16,
+              height: 16,
+              colorFilter: ColorFilter.mode(
+                Get.theme.colorScheme.secondary,
+                BlendMode.srcIn,
+              ),
+            ),
+            suffixIcon: SvgPicture.asset(
+              'assets/icons/auth/ic_hide_password.svg',
+              width: 16,
+              height: 16,
+              colorFilter: ColorFilter.mode(
+                Get.theme.colorScheme.secondary,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
+          2.yh,
           ShartComponentMediumBody(text: 'Medium Body Text.'),
           ShartComponentSmallBody(text: 'Small Body Text'),
           4.yh,
@@ -61,6 +99,7 @@ class ComponentScreen extends StatelessWidget {
           4.yh,
           ShartComponentFollowButton(onTap: () {}),
           4.yh,
+
           SizedBox(
             width: 28.w,
             height: 4.h,
