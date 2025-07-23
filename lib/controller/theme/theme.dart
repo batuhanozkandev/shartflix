@@ -14,7 +14,7 @@ class ThemeController extends BaseController {
       brightness: Brightness.light,
       primary: ColorConstants.primary,
       onPrimary: ColorConstants.primary,
-      secondary: ColorConstants.black,
+      secondary: ColorConstants.secondary,
       onSecondary: ColorConstants.black,
       error: Colors.red,
       onError: Colors.red,
