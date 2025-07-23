@@ -5,6 +5,8 @@ import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
 
+import '../text/body/medium.dart';
+
 class ShartComponentPrimaryButtonWithIcon extends StatelessWidget {
   const ShartComponentPrimaryButtonWithIcon({
     super.key,
@@ -38,13 +40,7 @@ class ShartComponentPrimaryButtonWithIcon extends StatelessWidget {
                 colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
               2.xw,
-              Text(
-                text,
-                style: Get.theme.textTheme.labelSmall!.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              ShartComponentMediumBody(text: text),
             ],
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
+import 'package:shartflix/widget/text/body/medium.dart';
 
 class ShartComponentPrimaryButton extends StatelessWidget {
   const ShartComponentPrimaryButton({
@@ -24,13 +25,7 @@ class ShartComponentPrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(ShartflixRadius.buttonRadius),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: Get.theme.textTheme.labelMedium!.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          child: ShartComponentMediumBody(text: text),
         ),
       ),
     );

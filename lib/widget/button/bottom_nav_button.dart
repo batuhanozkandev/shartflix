@@ -5,6 +5,8 @@ import 'package:shartflix/core/constant/radius.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shartflix/core/extention/numX.dart';
 
+import '../text/body/medium.dart';
+
 class _ShartComponentBottomNavButton extends StatelessWidget {
   const _ShartComponentBottomNavButton({super.key, this.onTap, required this.text, required this.iconPath});
 
@@ -36,12 +38,7 @@ class _ShartComponentBottomNavButton extends StatelessWidget {
                 BlendMode.srcIn,
               ),
             ),
-            Text(
-              text,
-              style: Get.theme.textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            ShartComponentMediumBody(text: text),
           ],
         )
       ),
