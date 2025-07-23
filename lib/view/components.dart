@@ -7,6 +7,7 @@ import 'package:shartflix/widget/button/social_button.dart';
 
 import '../widget/button/add_button.dart';
 import '../widget/button/back_button.dart';
+import '../widget/button/follow_button.dart';
 
 class ComponentScreen extends StatelessWidget {
   const ComponentScreen({super.key});
@@ -32,12 +33,14 @@ class _Mobile extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: ShartComponentBackButton(),
               ),
-              12.yh,
+              4.yh,
               ShartComponentPrimaryButton(text: 'Primary Button', onTap: () {}),
               4.yh,
               SocialRow(),
               4.yh,
               ShartComponentAddButton(),
+              4.yh,
+              ShartComponentFollowButton(onTap: () {}),
             ],
           ),
         ),
