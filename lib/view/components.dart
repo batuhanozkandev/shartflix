@@ -8,6 +8,7 @@ import 'package:shartflix/widget/button/social_button.dart';
 import '../widget/button/add_button.dart';
 import '../widget/button/back_button.dart';
 import '../widget/button/follow_button.dart';
+import '../widget/button/primary_button_with_icon.dart';
 
 class ComponentScreen extends StatelessWidget {
   const ComponentScreen({super.key});
@@ -41,6 +42,15 @@ class _Mobile extends StatelessWidget {
               ShartComponentAddButton(),
               4.yh,
               ShartComponentFollowButton(onTap: () {}),
+              4.yh,
+              SizedBox(
+                width: 28.w,
+                height: 4.h,
+                child: ShartComponentPrimaryButtonWithIcon(
+                  text: 'Sınırlı Teklif',
+                  onTap: () {}, iconPath: 'assets/icons/ic_diamond.svg',
+                ),
+              ),
             ],
           ),
         ),
