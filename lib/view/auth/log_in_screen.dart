@@ -29,7 +29,7 @@ class LogInScreen extends StatelessWidget {
           ),
           4.yh,
           ShartFlixInputField(
-            hintText: 'Input Field',
+            hintText: 'E-Posta',
             prefixIcon: SvgPicture.asset(
               'assets/icons/auth/ic_email.svg',
               width: 16,

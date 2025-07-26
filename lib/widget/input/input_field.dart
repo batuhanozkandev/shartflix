@@ -57,11 +57,11 @@ class ShartFlixInputField extends StatelessWidget {
         prefixIcon: prefixIcon != null ? Container(
             margin: EdgeInsets.only(left: 6.w, right: 2.w),
             child: prefixIcon) : null,
-        prefixIconConstraints: BoxConstraints(maxHeight: 6.w),
+        prefixIconConstraints: BoxConstraints(maxHeight: 7.w),
         suffixIcon:  suffixIcon != null ? Container(
             margin: EdgeInsets.only(right: 5.w),
             child: suffixIcon) : null,
-        suffixIconConstraints: BoxConstraints(maxHeight: 6.w),
+        suffixIconConstraints: BoxConstraints(maxHeight: 7.w),
         hintText: hintText,
         fillColor: ColorConstants.buttonBackground,
         filled: true,
