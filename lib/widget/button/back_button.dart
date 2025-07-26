@@ -15,7 +15,7 @@ class ShartComponentBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => UserService.getProfile(),
+      onTap: () => Get.back(),
       child: Container(
         padding: ShartflixPadding.buttonTextPadding,
         width: 12.w,

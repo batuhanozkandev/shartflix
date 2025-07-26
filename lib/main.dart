@@ -5,6 +5,7 @@ import 'package:shartflix/view/auth/log_in_screen.dart';
 import 'package:shartflix/view/auth/sign_up_screen.dart';
 import 'package:shartflix/view/components.dart';
 import 'package:shartflix/view/main/main_screen.dart';
+import 'package:shartflix/view/profile/add_profile_photo_screen.dart';
 
 import 'controller/theme/theme.dart';
 import 'helper/app.dart';
@@ -25,7 +26,7 @@ void main() async {
         translations: Languages(),
         title: 'Shartflix',
         debugShowCheckedModeBanner: false,
-        home: SignUpScreen(),
+        home: AddProfilePhotoScreen(),
         //hasToken ? const MainScreen() : const WelcomeScreen(),
         theme: themeController.lightTheme,
         routes: AppRoutes.routes,

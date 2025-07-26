@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
+import 'package:shartflix/widget/text/body/small.dart';
 
 import '../text/body/medium.dart';
 
@@ -29,20 +30,17 @@ class ShartComponentPrimaryButtonWithIcon extends StatelessWidget {
           color: Get.theme.colorScheme.primary,
           borderRadius: BorderRadius.circular(ShartflixRadius.buttonRadius),
         ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                iconPath,
-                width: 16,
-                height: 16,
-                colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
-              2.xw,
-              ShartComponentMediumBody(text: text),
-            ],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SvgPicture.asset(
+              iconPath,
+              width: 16,
+              height: 16,
+              colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            ),
+            ShartComponentSmallBody(text: text),
+          ],
         ),
       ),
     );
