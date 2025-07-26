@@ -13,8 +13,11 @@ class ShartComponentBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-          AuthService.logIn(email: 'safa@nodelabs.com', password: '123456'),
+      onTap: () => AuthService.register(
+        email: 'testim@nodelabs.com',
+        name: 'testim',
+        password: '123456',
+      ),
       child: Container(
         padding: ShartflixPadding.buttonTextPadding,
         width: 12.w,
