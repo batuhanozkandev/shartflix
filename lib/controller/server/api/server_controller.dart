@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:shartflix/cache/cache.dart';
 import '../server.dart';
 
@@ -71,6 +73,44 @@ class ServerController extends BaseServerController {
     }
     return result;
   }
+
+  Future<void> postMultipart(
+      String endPoint, {
+        required Map<String, String> fields,
+        required File file,
+        required String fileFieldName,
+      }) async {
+    var token = ShartflixCache.getValue(key: 'token');
+    final url = Uri.parse(_baseUrl + endPoint);
+
+    final request = http.MultipartRequest('POST', url);
+
+    if (token != null && token.isNotEmpty) {
+      request.headers['Authorization'] = 'Bearer $token';
+    }
+
+    request.fields.addAll(fields);
+
+    request.files.add(await http.MultipartFile.fromPath(
+      fileFieldName,
+      file.path,
+      contentType: MediaType('image', 'jpeg'),
+    ));
+
+    print("Gönderilen alanlar: ${request.fields}");
+    print("Gönderilen dosya: ${file.path}");
+
+    final response = await request.send();
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      print("Dosya başarıyla yüklendi.");
+    } else {
+      print("Yükleme hatası: ${response.statusCode}");
+      final error = await response.stream.bytesToString();
+      print("Hata detay: $error");
+    }
+  }
+
 
   //Put Request
   Future<Map<String, dynamic>> put(
@@ -145,9 +185,11 @@ class ServerController extends BaseServerController {
     Map<String, dynamic> result = jsonDecode(response.body);
     print('code ${response.statusCode}');
     String errorMessage = '';
-    switch(response.statusCode){
-      case 400:
+    switch(result['response']['message']){
+      case 'INVALID_CREDENTIALS':
         errorMessage = 'Email or password is wrong. Please try again.';
+      case 'TOKEN_UNAVAILABLE':
+        errorMessage = 'Lütfen giriş yapınız.';
       default:
         errorMessage = 'Somethings went wrong';
     }
