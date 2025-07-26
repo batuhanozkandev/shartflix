@@ -10,6 +10,7 @@ class ShartComponentSmallBody extends StatelessWidget {
     this.isItalic = false,
     this.hasThroughLine = false,
     this.hasOverline = false,
+    this.maxLines,
   });
 
   final String text;
@@ -18,6 +19,7 @@ class ShartComponentSmallBody extends StatelessWidget {
   final bool? hasThroughLine;
   final bool? hasOverline;
   final bool? isItalic;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,11 @@ class ShartComponentSmallBody extends StatelessWidget {
           : TextDecoration.none,
       fontStyle: isItalic! ? FontStyle.italic : FontStyle.normal,
     );
-    return Text(text, style: style, textAlign: TextAlign.center);
+    return Text(
+      text,
+      style: style,
+      textAlign: TextAlign.center,
+      maxLines: maxLines,
+    );
   }
 }

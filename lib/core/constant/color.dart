@@ -13,6 +13,7 @@ class ColorConstants {
   static Color borderColor = Colors.white.withValues(
     alpha: 0.2,
   );
+  static Color bgCircleRedColor = const Color(0xFFE50914);
   static Color black = const Color(0xFF313131);
   static Color grey = const Color(0xFF868D95);
   static Color error = Colors.red;
