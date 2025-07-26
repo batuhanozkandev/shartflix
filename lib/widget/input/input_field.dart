@@ -63,8 +63,8 @@ class ShartFlixInputField extends StatelessWidget {
             child: suffixIcon) : null,
         suffixIconConstraints: BoxConstraints(maxHeight: 6.w),
         hintText: hintText,
-        fillColor: const Color(0xFFe8eff8),
-        filled: false,
+        fillColor: ColorConstants.buttonBackground,
+        filled: true,
         hintStyle: Get.theme.textTheme.bodyLarge!.copyWith(
           color: inputTextColor ?? ColorConstants.buttonBackground,
         ),

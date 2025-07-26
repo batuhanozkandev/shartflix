@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constant/color.dart';
+
 class ShartComponentLargeBody extends StatelessWidget {
   const ShartComponentLargeBody({
     super.key,
@@ -9,11 +11,12 @@ class ShartComponentLargeBody extends StatelessWidget {
     this.hasUnderline = false,
     this.isItalic = false,
     this.hasThroughLine = false,
-    this.hasOverline = false,
+    this.hasOverline = false, this.isDark = false,
   });
 
   final String text;
   final bool? isBold;
+  final bool? isDark;
   final bool? hasUnderline;
   final bool? hasThroughLine;
   final bool? hasOverline;
@@ -22,7 +25,9 @@ class ShartComponentLargeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? style = Get.theme.textTheme.bodyLarge?.copyWith(
-      color: Get.theme.colorScheme.secondary,
+      color: isDark!
+          ? ColorConstants.darkText
+          : Get.theme.colorScheme.secondary,
       fontWeight: isBold! ? FontWeight.bold : FontWeight.normal,
       decoration: hasUnderline!
           ? TextDecoration.underline

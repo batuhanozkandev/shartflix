@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/core/constant/color.dart';
 
 class ShartComponentSmallBody extends StatelessWidget {
   const ShartComponentSmallBody({
@@ -11,10 +12,12 @@ class ShartComponentSmallBody extends StatelessWidget {
     this.hasThroughLine = false,
     this.hasOverline = false,
     this.maxLines,
+    this.isDark = false,
   });
 
   final String text;
   final bool? isBold;
+  final bool? isDark;
   final bool? hasUnderline;
   final bool? hasThroughLine;
   final bool? hasOverline;
@@ -24,7 +27,9 @@ class ShartComponentSmallBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? style = Get.theme.textTheme.bodySmall?.copyWith(
-      color: Get.theme.colorScheme.secondary,
+      color: isDark!
+          ? ColorConstants.darkText
+          : Get.theme.colorScheme.secondary,
       fontWeight: isBold! ? FontWeight.bold : FontWeight.normal,
       decoration: hasUnderline!
           ? TextDecoration.underline

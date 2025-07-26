@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shartflix/routes/routes.dart';
+import 'package:shartflix/view/auth/log_in_screen.dart';
 import 'package:shartflix/view/components.dart';
 import 'package:shartflix/view/main/main_screen.dart';
 
@@ -23,7 +24,7 @@ void main() async {
         translations: Languages(),
         title: 'Shartflix',
         debugShowCheckedModeBanner: false,
-        home: ComponentScreen(),
+        home: LogInScreen(),
         //hasToken ? const MainScreen() : const WelcomeScreen(),
         theme: themeController.lightTheme,
         routes: AppRoutes.routes,
