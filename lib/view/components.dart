@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/service/auth/auth.dart';
+import 'package:shartflix/service/user/user.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
 import 'package:shartflix/widget/button/social_button.dart';
@@ -43,6 +46,16 @@ class ComponentScreen extends StatelessWidget {
               email: 'testim@nodelabs.com',
               password: '123456',
             ),
+          ),
+          2.yh,
+          ShartComponentPrimaryButton(
+            text: 'Upload Photo',
+            onTap: () => UserService.uploadPhoto(photoURL: '', file: File('')),
+          ),
+          2.yh,
+          ShartComponentPrimaryButton(
+            text: 'Get Profile',
+            onTap: () => UserService.getProfile(),
           ),
           ShartComponentLargeTitle(text: 'Large Title Text'),
           ShartComponentMediumTitle(text: 'Medium Title Text'),
