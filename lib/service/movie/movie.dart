@@ -49,4 +49,17 @@ class MovieService extends BaseController {
     }
     return [];
   }
+
+  static Future<void> favoriteMovie({required String movieID}) async {
+    var response = await ServerController().post('/movie/favorite/$movieID', data: {});
+    if (response['response']['code'] == 200) {
+      String message = response['response']['message'];
+      Future.delayed(1.seconds, () {
+        AppSnackBar.show(
+          statusCode: response['response']['code'] ?? 1001,
+          successMessage: message.isEmpty ? 'No Message from Server' : message,
+        );
+      });
+    }
+  }
 }
