@@ -5,7 +5,7 @@ import 'package:shartflix/cache/cache.dart';
 import '../server.dart';
 
 class ServerController extends BaseServerController {
-  final String _baseUrl = 'http://localhost:3008/api/v1';
+  final String _baseUrl = 'https://caseapi.servicelabs.tech';
 
   //Get Request
   Future<Map<String, dynamic>> get(String endPoint) async {
@@ -143,10 +143,18 @@ class ServerController extends BaseServerController {
     print('Http Error: ${response.statusCode}\nResponse: ${response.body}');
     print('------------------------------------------------');
     Map<String, dynamic> result = jsonDecode(response.body);
+    print('code ${response.statusCode}');
+    String errorMessage = '';
+    switch(response.statusCode){
+      case 400:
+        errorMessage = 'Email or password is wrong. Please try again.';
+      default:
+        errorMessage = 'Somethings went wrong';
+    }
     Get.showSnackbar(
       GetSnackBar(
         title: 'Error!',
-        message: result['message'],
+        message: errorMessage,
         backgroundColor: Get.theme.colorScheme.error,
         duration: const Duration(seconds: 2),
       ),
