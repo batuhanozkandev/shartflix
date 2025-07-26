@@ -7,6 +7,7 @@ import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/service/auth/auth.dart';
+import 'package:shartflix/service/movie/movie.dart';
 import 'package:shartflix/service/user/user.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
@@ -56,6 +57,11 @@ class ComponentScreen extends StatelessWidget {
           ShartComponentPrimaryButton(
             text: 'Get Profile',
             onTap: () => UserService.getProfile(),
+          ),
+          2.yh,
+          ShartComponentPrimaryButton(
+            text: 'Get Movies',
+            onTap: () => MovieService.getMovies(page: 1),
           ),
           ShartComponentLargeTitle(text: 'Large Title Text'),
           ShartComponentMediumTitle(text: 'Medium Title Text'),
