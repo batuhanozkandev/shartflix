@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shartflix/core/extention/numX.dart';
+import 'package:shartflix/helper/bottom_sheet/bottom_sheet.dart';
 
 import '../button/back_button.dart';
 import '../button/primary_button_with_icon.dart';
@@ -29,7 +30,7 @@ class ShartAppBar extends StatelessWidget {
               width: 24.w,
               child: ShartComponentPrimaryButtonWithIcon(
                 text: 'Sınırlı Teklif',
-                onTap: () {},
+                onTap: () => AppBottomSheet.openOfferBottomSheet(),
                 iconPath: 'assets/icons/ic_diamond.svg',
               ),
             ),

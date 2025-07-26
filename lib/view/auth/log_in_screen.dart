@@ -72,7 +72,9 @@ class LogInScreen extends StatelessWidget {
             ),
           ),
           2.yh,
-          ShartComponentPrimaryButton(text: 'Giriş Yap', onTap: () {}),
+          ShartComponentPrimaryButton(
+              height: 6.h,
+              text: 'Giriş Yap', onTap: () {}),
           4.yh,
           SocialRow(),
           4.yh,

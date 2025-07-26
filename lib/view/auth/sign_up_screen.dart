@@ -111,7 +111,9 @@ class SignUpScreen extends StatelessWidget {
             ],
           ),),
           2.yh,
-          ShartComponentPrimaryButton(text: 'Şimdi Kaydol', onTap: () {}),
+          ShartComponentPrimaryButton(
+              height: 6.h,
+              text: 'Şimdi Kaydol', onTap: () {}),
           4.yh,
           SocialRow(),
           4.yh,

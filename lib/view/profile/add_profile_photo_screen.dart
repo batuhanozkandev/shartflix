@@ -32,7 +32,9 @@ class AddProfilePhotoScreen extends StatelessWidget {
             4.yh,
             ShartComponentAddButton(),
             Spacer(),
-            ShartComponentPrimaryButton(text: 'Devam Et', onTap: () => Get.back()),
+            ShartComponentPrimaryButton(
+                height: 6.h,
+                text: 'Devam Et', onTap: () => Get.back()),
           ],
         ),
       ),

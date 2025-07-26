@@ -7,6 +7,7 @@ import 'package:shartflix/widget/button/bottom_nav_button.dart';
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_state.dart';
+import '../profile/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -24,10 +25,7 @@ class MainScreen extends StatelessWidget {
             body: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: state.pageController,
-              children: const [
-                AddProfilePhotoScreen(),
-                LogInScreen(),
-              ],
+              children: [LogInScreen(), ProfileScreen()],
             ),
           );
         },
@@ -35,6 +33,3 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
-//context.read<BottomNavBarBloc>().add(BottomNavBarRouteTo(index));
-
-//

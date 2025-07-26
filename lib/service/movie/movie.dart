@@ -10,19 +10,11 @@ class MovieService extends BaseController {
     List<Movie> movies = [];
     var response = await ServerController().get('/movie/list?page=$page');
     if (response['response']['code'] == 200) {
-      String message = response['response']['message'];
       if (response['data']['movies'] != null) {
         movies = (response['data']['movies'] as List)
             .map((movie) => Movie.fromJson(movie))
             .toList();
       }
-      Future.delayed(1.seconds, () {
-        AppSnackBar.show(
-          statusCode: response['response']['code'] ?? 1001,
-          successMessage: message.isEmpty ? 'No Message from Server' : message,
-        );
-      });
-
       return movies;
     }
     return [];

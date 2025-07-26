@@ -1,0 +1,166 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:shartflix/core/constant/color.dart';
+import 'package:shartflix/core/extention/numX.dart';
+import 'package:shartflix/routes/routes.dart';
+import 'package:shartflix/service/user/user.dart';
+import 'package:shartflix/view/base/base_screen.dart';
+import 'package:shartflix/widget/app_bar/app_bar.dart';
+import 'package:shartflix/widget/button/primary_button.dart';
+import 'package:shartflix/widget/text/body/medium.dart';
+import 'package:shartflix/widget/text/body/small.dart';
+
+import '../../bloc/movie_bloc/movie_bloc.dart';
+import '../../bloc/movie_bloc/movie_event.dart';
+import '../../bloc/movie_bloc/movie_state.dart';
+import '../../bloc/user_bloc/user_bloc.dart';
+import '../../bloc/user_bloc/user_state.dart';
+import '../../model/user/user.dart';
+import '../../widget/card/movie.dart';
+import '../../widget/text/body/large.dart';
+
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({super.key});
+
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: UniqueKey(),
+      backgroundColor: ColorConstants.background,
+      extendBody: true,
+      body: SafeArea(
+        child: BlocBuilder<UserBloc, UserState>(
+          builder: (context, state) {
+            if (state is UserLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is UserError) {
+              return Center(child: Text(state.message));
+            } else if (state is UserLoaded) {
+              _scrollController.addListener(() {
+                if (_scrollController.position.pixels >=
+                    _scrollController.position.maxScrollExtent - 100) {
+                  if (!context.read<MovieBloc>().hasReachedMax) {
+                    // Fetch next page of movies
+                    context.read<MovieBloc>().add(
+                      FetchMovies(
+                        page: context.read<MovieBloc>().currentPage + 1,
+                      ),
+                    );
+                  }
+                }
+              });
+              return SingleChildScrollView(
+                controller: _scrollController,
+                child: Column(
+                  children: [
+                    ShartAppBar(isActiveLimitedOfferButton: true),
+                    4.yh,
+                    SizedBox(
+                      width: 92.w,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 16.w,
+                            height: 16.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: CupertinoColors.systemGrey,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.w),
+                              child: Image.network(
+                                state.user.photoUrl ??
+                                    'https://via.placeholder.com/150',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          4.xw,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ShartComponentMediumBody(text: 'Batuhan Özkan'),
+                              1.yh,
+                              ShartComponentSmallBody(
+                                text:
+                                    'ID: ${state.user.id.toString().substring(0, 6)}',
+                                isDark: true,
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          ShartComponentPrimaryButton(
+                            height: 4.h,
+                            width: 28.w,
+                            text: 'Fotoğraf Ekle',
+                            onTap: () =>
+                                Get.toNamed(AppPages.addProfilePhotoScreen),
+                          ),
+                        ],
+                      ),
+                    ),
+                    4.yh,
+                    Padding(
+                      padding: 8.w.pLeft,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: ShartComponentMediumBody(
+                          text: 'Beğendiğim filmler',
+                          isBold: true,
+                        ),
+                      ),
+                    ),
+                    2.yh,
+                    BlocBuilder<MovieBloc, MovieState>(
+                      builder: (context, state) {
+                        if (state is MovieLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (state is MovieError) {
+                          return Center(child: Text(state.message));
+                        } else if (state is MovieLoaded) {
+                          return GridView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.symmetric(horizontal: 6.w),
+                            itemCount: state.movies.length,
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 4.w,
+                                  crossAxisSpacing: 4.w,
+                                  childAspectRatio: 0.65,
+                                ),
+                            itemBuilder: (_, index) {
+                              return MovieCard(
+                                imageUrl:
+                                    (state.movies[index].images?[0] ??
+                                    state.movies[index].poster ??
+                                    'https://via.placeholder.com/150'),
+                                title:
+                                    state.movies[index].title ?? 'Movie Title',
+                                subtitle:
+                                    state.movies[index].director ?? 'Director',
+                              );
+                            },
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                  ],
+                ),
+              );
+            }
+            return const SizedBox();
+          },
+        ),
+      ),
+    );
+  }
+}
