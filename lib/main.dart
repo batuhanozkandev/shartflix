@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shartflix/routes/routes.dart';
+import 'package:shartflix/view/components.dart';
+import 'package:shartflix/view/main/main_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'controller/theme/theme.dart';
+import 'helper/app.dart';
+import 'language/language.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //App controllers and cache have been initializing here
+  await App.init();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+  final themeController = Get.put(ThemeController());
+  bool hasToken = App.hasToken();
+  print('Has Token : $hasToken');
+  Future.delayed(
+    10.milliseconds,
+        () => runApp(
+      GetMaterialApp(
+        translations: Languages(),
+        title: 'Shartflix',
+        debugShowCheckedModeBanner: false,
+        home: ComponentScreen(),
+        //hasToken ? const MainScreen() : const WelcomeScreen(),
+        theme: themeController.lightTheme,
+        routes: AppRoutes.routes,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Demo Home Page'),
-        ),
-        body: const Center(
-          child: Text('Hello, World!'),
-        ),
-      ),
-    );
-  }
+    ),
+  );
 }
