@@ -63,6 +63,11 @@ class ComponentScreen extends StatelessWidget {
             text: 'Get Movies',
             onTap: () => MovieService.getMovies(page: 1),
           ),
+          2.yh,
+          ShartComponentPrimaryButton(
+            text: 'Get Fav Movies',
+            onTap: () => MovieService.getFavoriteMovies(),
+          ),
           ShartComponentLargeTitle(text: 'Large Title Text'),
           ShartComponentMediumTitle(text: 'Medium Title Text'),
           ShartComponentSmallTitle(text: 'Small Title Text'),

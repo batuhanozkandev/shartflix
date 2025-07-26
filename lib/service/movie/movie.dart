@@ -27,4 +27,26 @@ class MovieService extends BaseController {
     }
     return [];
   }
+
+  static Future<List<Movie>?> getFavoriteMovies() async {
+    List<Movie> favoriteMovies = [];
+    var response = await ServerController().get('/movie/favorites');
+    if (response['response']['code'] == 200) {
+      String message = response['response']['message'];
+      if (response['data'] != null) {
+        favoriteMovies = (response['data'] as List)
+            .map((movie) => Movie.fromJson(movie))
+            .toList();
+      }
+      Future.delayed(1.seconds, () {
+        AppSnackBar.show(
+          statusCode: response['response']['code'] ?? 1001,
+          successMessage: message.isEmpty ? 'No Message from Server' : message,
+        );
+      });
+
+      return favoriteMovies;
+    }
+    return [];
+  }
 }
