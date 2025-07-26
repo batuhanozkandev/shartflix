@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/cache/cache.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/service/auth/auth.dart';
+import 'package:shartflix/service/user/user.dart';
 
 class ShartComponentBackButton extends StatelessWidget {
   const ShartComponentBackButton({super.key});
@@ -13,11 +15,7 @@ class ShartComponentBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AuthService.register(
-        email: 'testim@nodelabs.com',
-        name: 'testim',
-        password: '123456',
-      ),
+      onTap: () => UserService.getProfile(),
       child: Container(
         padding: ShartflixPadding.buttonTextPadding,
         width: 12.w,

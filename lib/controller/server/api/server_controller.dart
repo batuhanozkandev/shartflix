@@ -145,9 +145,11 @@ class ServerController extends BaseServerController {
     Map<String, dynamic> result = jsonDecode(response.body);
     print('code ${response.statusCode}');
     String errorMessage = '';
-    switch(response.statusCode){
-      case 400:
+    switch(result['response']['message']){
+      case 'INVALID_CREDENTIALS':
         errorMessage = 'Email or password is wrong. Please try again.';
+      case 'TOKEN_UNAVAILABLE':
+        errorMessage = 'Lütfen giriş yapınız.';
       default:
         errorMessage = 'Somethings went wrong';
     }
