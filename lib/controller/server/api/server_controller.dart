@@ -5,7 +5,7 @@ import 'package:shartflix/cache/cache.dart';
 import '../server.dart';
 
 class ServerController extends BaseServerController {
-  final String _baseUrl = 'http://localhost:3008/api/v1';
+  final String _baseUrl = 'https://caseapi.servicelabs.tech';
 
   //Get Request
   Future<Map<String, dynamic>> get(String endPoint) async {
