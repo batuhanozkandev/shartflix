@@ -45,7 +45,7 @@ class MovieCard extends StatelessWidget {
           ),
         ),
         1.yh,
-        ShartComponentMediumBody(text: title, isBold: true),
+        FittedBox(child: ShartComponentMediumBody(text: title, isBold: true)),
         ShartComponentSmallBody(text: subtitle),
       ],
     );

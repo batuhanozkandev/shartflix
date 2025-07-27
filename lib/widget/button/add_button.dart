@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shartflix/core/extention/numX.dart';
+import 'package:shartflix/service/user/user.dart';
+
+import '../../helper/snack_bar/snack_bar.dart';
 
 class ShartComponentAddButton extends StatelessWidget {
   const ShartComponentAddButton({super.key});
@@ -12,8 +18,23 @@ class ShartComponentAddButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        //TODO: Implement add button functionality
+      onTap: () async {
+        final ImagePicker picker = ImagePicker();
+        final XFile? image = await picker.pickImage(
+          source: ImageSource.gallery,
+        );
+        if (image == null) {
+          AppSnackBar.show(
+            statusCode: 400,
+            errorMessage: 'No image selected',
+            successMessage: '',
+          );
+          return;
+        }
+        UserService.uploadPhoto(
+          photoURL: 'batu-image.png',
+          file: File(image.path),
+        );
       },
       child: Container(
         padding: ShartflixPadding.buttonTextPadding,
@@ -21,9 +42,7 @@ class ShartComponentAddButton extends StatelessWidget {
         height: 36.w,
         decoration: BoxDecoration(
           color: ColorConstants.buttonBackground,
-          borderRadius: BorderRadius.circular(
-            ShartflixRadius.buttonRadius,
-          ),
+          borderRadius: BorderRadius.circular(ShartflixRadius.buttonRadius),
           border: Border.all(color: ColorConstants.borderColor, width: 1.0),
         ),
         child: Center(

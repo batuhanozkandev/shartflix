@@ -30,20 +30,10 @@ class UserService extends BaseController {
     required String photoURL,
     required File file,
   }) async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (image == null) {
-      AppSnackBar.show(
-        statusCode: 400,
-        errorMessage: 'No image selected',
-        successMessage: '',
-      );
-      return;
-    }
     await ServerController().postMultipart(
       '/user/upload_photo',
-      fields: {"photoUrl": 'bimage.png'},
-      file: File(image.path),
+      fields: {"photoUrl": photoURL},
+      file: file,
       fileFieldName: 'file',
     );
   }

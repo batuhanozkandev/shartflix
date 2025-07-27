@@ -42,6 +42,7 @@ class ComponentScreen extends StatelessWidget {
           ),
           4.yh,
           ShartComponentPrimaryButton(
+            height: 6.h,
             text: 'Giriş Yap',
             onTap: () => AuthService.logIn(
               email: 'testim@nodelabs.com',
@@ -50,26 +51,31 @@ class ComponentScreen extends StatelessWidget {
           ),
           2.yh,
           ShartComponentPrimaryButton(
+            height: 6.h,
             text: 'Upload Photo',
             onTap: () => UserService.uploadPhoto(photoURL: '', file: File('')),
           ),
           2.yh,
           ShartComponentPrimaryButton(
+            height: 6.h,
             text: 'Get Profile',
             onTap: () => UserService.getProfile(),
           ),
           2.yh,
           ShartComponentPrimaryButton(
+            height: 6.h,
             text: 'Get Movies',
             onTap: () => MovieService.getMovies(page: 1),
           ),
           2.yh,
           ShartComponentPrimaryButton(
+            height: 6.h,
             text: 'Get Fav Movies',
             onTap: () => MovieService.getFavoriteMovies(),
           ),
           2.yh,
           ShartComponentPrimaryButton(
+            height: 6.h,
             text: 'Fav Movie',
             onTap: () =>
                 MovieService.favoriteMovie(movieID: '67bc8502e03a0ef366d5c66c'),
@@ -148,7 +154,9 @@ class ComponentScreen extends StatelessWidget {
           ShartComponentMediumBody(text: 'Medium Body Text.'),
           ShartComponentSmallBody(text: 'Small Body Text'),
           4.yh,
-          ShartComponentPrimaryButton(text: 'Primary Button', onTap: () {}),
+          ShartComponentPrimaryButton(
+              height: 6.h,
+              text: 'Primary Button', onTap: () {}),
           4.yh,
           SocialRow(),
           4.yh,

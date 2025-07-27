@@ -10,18 +10,20 @@ import 'package:shartflix/service/auth/auth.dart';
 import 'package:shartflix/service/user/user.dart';
 
 class ShartComponentBackButton extends StatelessWidget {
-  const ShartComponentBackButton({super.key});
+  const ShartComponentBackButton({super.key, this.isFilled = false});
+
+  final bool? isFilled;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => UserService.getProfile(),
+      onTap: () => Get.back(),
       child: Container(
         padding: ShartflixPadding.buttonTextPadding,
         width: 12.w,
         height: 12.w,
         decoration: BoxDecoration(
-          color: ColorConstants.buttonBackground,
+          color: isFilled! ? ColorConstants.black : ColorConstants.buttonBackground,
           borderRadius: BorderRadius.circular(
             ShartflixRadius.buttonRadius * 200,
           ),

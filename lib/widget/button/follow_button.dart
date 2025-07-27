@@ -22,7 +22,7 @@ class ShartComponentFollowButton extends StatelessWidget {
         width: 12.w,
         height: 16.w,
         decoration: BoxDecoration(
-          color: ColorConstants.buttonBackground,
+          color: ColorConstants.black,
           borderRadius: BorderRadius.circular(ShartflixRadius.buttonRadius * 2),
           border: Border.all(color: ColorConstants.borderColor, width: 1.0),
         ),

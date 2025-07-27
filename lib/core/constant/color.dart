@@ -9,6 +9,9 @@ class ColorConstants {
   );
   static Color lightPrimary = const Color(0xFFFFF0F0);
   static Color white = Colors.white;
+  static Color darkText = Colors.white.withValues(
+    alpha: 0.3,
+  );
   static Color socialIconColor = Colors.white;
   static Color borderColor = Colors.white.withValues(
     alpha: 0.2,
