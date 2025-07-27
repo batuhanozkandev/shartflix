@@ -14,14 +14,14 @@ class AuthService extends BaseController {
   }) async {
     var response = await ServerController().post(
       '/user/login',
-      data: {"email": email, "password": password},
+      data: {"email": email.toLowerCase(), "password": password},
     );
     if (response['response']['code'] == 200) {
       await ShartflixCache.addValue(
         key: 'token',
         value: response['data']['token'],
       );
-      await ShartflixCache.addValue(key: 'email', value: email);
+      await ShartflixCache.addValue(key: 'email', value: email.toLowerCase());
       String message = response['response']['message'];
       Future.delayed(1.seconds, () {
         AppSnackBar.show(
@@ -40,11 +40,11 @@ class AuthService extends BaseController {
   }) async {
     var response = await ServerController().post(
       '/user/register',
-      data: {"email": email, "name": name, "password": password},
+      data: {"email": email.toLowerCase(), "name": name, "password": password},
     );
     if (response['response']['code'] == 200) {
-      await ShartflixCache.addValue(key: 'token', value: response['token']);
-      await ShartflixCache.addValue(key: 'email', value: email);
+      await ShartflixCache.addValue(key: 'token', value: response['data']['token']);
+      await ShartflixCache.addValue(key: 'email', value: email.toLowerCase());
       String message = response['response']['message'];
       Future.delayed(1.seconds, () {
         AppSnackBar.show(

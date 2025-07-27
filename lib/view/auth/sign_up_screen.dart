@@ -2,19 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/bloc/auth_bloc/auth_state.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/extention/numX.dart';
+import 'package:shartflix/service/auth/auth.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
 import 'package:shartflix/widget/text/body/large.dart';
 import 'package:shartflix/widget/text/title/small.dart';
 
 import '../../bloc/auth_bloc/auth_bloc.dart';
+import '../../bloc/auth_bloc/auth_event.dart';
 import '../../routes/routes.dart';
 import '../../widget/button/social_button.dart';
 import '../../widget/input/input_field.dart';
 import '../../widget/text/body/medium.dart';
 import '../../widget/text/body/small.dart';
+
+TextEditingController _nameSurnameController = TextEditingController();
+TextEditingController _emailController = TextEditingController();
+TextEditingController _passwordController = TextEditingController();
+TextEditingController _rePasswordController = TextEditingController();
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -35,6 +43,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             4.yh,
             ShartFlixInputField(
+              controller: _nameSurnameController,
               hintText: 'Ad Soyad',
               prefixIcon: SvgPicture.asset(
                 'assets/icons/auth/ic_add_user.svg',
@@ -48,6 +57,7 @@ class SignUpScreen extends StatelessWidget {
             ),
             2.yh,
             ShartFlixInputField(
+              controller: _emailController,
               hintText: 'E-Posta',
               prefixIcon: SvgPicture.asset(
                 'assets/icons/auth/ic_email.svg',
@@ -60,29 +70,39 @@ class SignUpScreen extends StatelessWidget {
               ),
             ),
             2.yh,
-            ShartFlixInputField(
-              hintText: 'Şifre',
-              prefixIcon: SvgPicture.asset(
-                'assets/icons/auth/ic_password.svg',
-                width: 16,
-                height: 16,
-                colorFilter: ColorFilter.mode(
-                  Get.theme.colorScheme.secondary,
-                  BlendMode.srcIn,
+            BlocBuilder<AuthBloc, AuthState>(
+              builder: (context, state) => ShartFlixInputField(
+                controller: _passwordController,
+                hintText: 'Şifre',
+                isObscure: state.isPasswordObscured,
+                prefixIcon: SvgPicture.asset(
+                  'assets/icons/auth/ic_password.svg',
+                  width: 16,
+                  height: 16,
+                  colorFilter: ColorFilter.mode(
+                    Get.theme.colorScheme.secondary,
+                    BlendMode.srcIn,
+                  ),
                 ),
-              ),
-              suffixIcon: SvgPicture.asset(
-                'assets/icons/auth/ic_hide_password.svg',
-                width: 16,
-                height: 16,
-                colorFilter: ColorFilter.mode(
-                  Get.theme.colorScheme.secondary,
-                  BlendMode.srcIn,
+                suffixIcon: GestureDetector(
+                  onTap: () =>
+                      context.read<AuthBloc>().add(TogglePasswordVisibility()),
+                  child: SvgPicture.asset(
+                    'assets/icons/auth/ic_hide_password.svg',
+
+                    width: 16,
+                    height: 16,
+                    colorFilter: ColorFilter.mode(
+                      Get.theme.colorScheme.secondary,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
               ),
             ),
             2.yh,
             ShartFlixInputField(
+              controller: _rePasswordController,
               hintText: 'Şifre Tekrar',
               prefixIcon: SvgPicture.asset(
                 'assets/icons/auth/ic_password.svg',
@@ -123,7 +143,22 @@ class SignUpScreen extends StatelessWidget {
             ShartComponentPrimaryButton(
               height: 6.h,
               text: 'Şimdi Kaydol',
-              onTap: () {},
+              onTap: () {
+                if (_passwordController.text != _rePasswordController.text) {
+                  Get.snackbar(
+                    'Hata',
+                    'Şifreler eşleşmiyor!',
+                    backgroundColor: ColorConstants.error,
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                  return;
+                }
+                AuthService.register(
+                  email: _emailController.text,
+                  name: _nameSurnameController.text,
+                  password: _passwordController.text,
+                );
+              },
             ),
             4.yh,
             SocialRow(),

@@ -57,7 +57,10 @@ class ProfileScreen extends StatelessWidget {
                 controller: _scrollController,
                 child: Column(
                   children: [
-                    ShartAppBar(isActiveLimitedOfferButton: true, hasBackButton: false,),
+                    ShartAppBar(
+                      isActiveLimitedOfferButton: true,
+                      hasBackButton: false,
+                    ),
                     4.yh,
                     SizedBox(
                       width: 92.w,
@@ -72,11 +75,17 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12.w),
-                              child: Image.network(
-                                state.user.photoUrl ??
-                                    'https://via.placeholder.com/150',
-                                fit: BoxFit.cover,
-                              ),
+                              child:
+                                  state.user.photoUrl != null &&
+                                      state.user.photoUrl!.isNotEmpty
+                                  ? Image.network(
+                                      state.user.photoUrl!,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.asset(
+                                      'assets/images/img_logo_sinflix.png',
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                           ),
                           4.xw,
