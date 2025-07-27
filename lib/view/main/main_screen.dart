@@ -59,7 +59,7 @@ class _MainScreenState extends State<MainScreen> {
                       create: (_) => UserBloc()..add(FetchUserProfile()),
                     ),
                     BlocProvider<MovieBloc>(
-                      create: (_) => MovieBloc()..add(FetchMovies(page: 1)),
+                      create: (_) => MovieBloc()..add(FetchFavoriteMovies()),
                     ),
                   ],
                   child: ProfileScreen(),

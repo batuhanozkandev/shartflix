@@ -40,19 +40,7 @@ class ProfileScreen extends StatelessWidget {
             } else if (state is UserError) {
               return Center(child: Text(state.message));
             } else if (state is UserLoaded) {
-              _scrollController.addListener(() {
-                if (_scrollController.position.pixels >=
-                    _scrollController.position.maxScrollExtent - 100) {
-                  if (!context.read<MovieBloc>().hasReachedMax) {
-                    // Fetch next page of movies
-                    context.read<MovieBloc>().add(
-                      FetchMovies(
-                        page: context.read<MovieBloc>().currentPage + 1,
-                      ),
-                    );
-                  }
-                }
-              });
+
               return SingleChildScrollView(
                 controller: _scrollController,
                 child: Column(
@@ -126,17 +114,17 @@ class ProfileScreen extends StatelessWidget {
                     2.yh,
                     BlocBuilder<MovieBloc, MovieState>(
                       builder: (context, state) {
-                        if (state is MovieLoading) {
+                        if (state is FavoriteMovieLoading) {
                           return const Center(
                             child: CircularProgressIndicator(),
                           );
-                        } else if (state is MovieError) {
+                        } else if (state is FavoriteMovieError) {
                           return Center(child: Text(state.message));
-                        } else if (state is MovieLoaded) {
+                        } else if (state is FavoriteMovieLoaded) {
                           return GridView.builder(
                             shrinkWrap: true,
                             padding: EdgeInsets.symmetric(horizontal: 6.w),
-                            itemCount: state.movies.length,
+                            itemCount: state.favoriteMovies.length,
                             physics: const NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -148,13 +136,13 @@ class ProfileScreen extends StatelessWidget {
                             itemBuilder: (_, index) {
                               return MovieCard(
                                 imageUrl:
-                                    (state.movies[index].images?[0] ??
-                                    state.movies[index].poster ??
+                                    (state.favoriteMovies[index].images?[0] ??
+                                    state.favoriteMovies[index].poster ??
                                     'https://via.placeholder.com/150'),
                                 title:
-                                    state.movies[index].title ?? 'Movie Title',
+                                    state.favoriteMovies[index].title ?? 'Movie Title',
                                 subtitle:
-                                    state.movies[index].director ?? 'Director',
+                                    state.favoriteMovies[index].director ?? 'Director',
                               );
                             },
                           );

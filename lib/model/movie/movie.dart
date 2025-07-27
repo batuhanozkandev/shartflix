@@ -25,32 +25,33 @@ class Movie {
   bool? comingSoon;
   bool? isFavorite;
 
-  Movie(
-      {this.sId,
-        this.id,
-        this.title,
-        this.year,
-        this.rated,
-        this.released,
-        this.runtime,
-        this.genre,
-        this.director,
-        this.writer,
-        this.actors,
-        this.plot,
-        this.language,
-        this.country,
-        this.awards,
-        this.poster,
-        this.metascore,
-        this.imdbRating,
-        this.imdbVotes,
-        this.imdbID,
-        this.type,
-        this.response,
-        this.images,
-        this.comingSoon,
-        this.isFavorite});
+  Movie({
+    this.sId,
+    this.id,
+    this.title,
+    this.year,
+    this.rated,
+    this.released,
+    this.runtime,
+    this.genre,
+    this.director,
+    this.writer,
+    this.actors,
+    this.plot,
+    this.language,
+    this.country,
+    this.awards,
+    this.poster,
+    this.metascore,
+    this.imdbRating,
+    this.imdbVotes,
+    this.imdbID,
+    this.type,
+    this.response,
+    this.images,
+    this.comingSoon,
+    this.isFavorite,
+  });
 
   Movie.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -108,5 +109,35 @@ class Movie {
     data['ComingSoon'] = this.comingSoon;
     data['isFavorite'] = this.isFavorite;
     return data;
+  }
+
+  Movie copyWith({bool? isFavorite}) {
+    return Movie(
+      isFavorite: isFavorite ?? this.isFavorite,
+      sId: sId,
+      id: id,
+      title: title,
+      year: year,
+      rated: rated,
+      released: released,
+      runtime: runtime,
+      genre: genre,
+      director: director,
+      writer: writer,
+      actors: actors,
+      plot: plot,
+      language: language,
+      country: country,
+      awards: awards,
+      poster: poster,
+      metascore: metascore,
+      imdbRating: imdbRating,
+      imdbVotes: imdbVotes,
+      imdbID: imdbID,
+      type: type,
+      response: response,
+      images: images,
+      comingSoon: comingSoon,
+    );
   }
 }

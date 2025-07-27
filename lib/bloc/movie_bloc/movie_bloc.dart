@@ -11,7 +11,34 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
 
   MovieBloc() : super(MovieInitial()) {
     on<FetchMovies>(_onFetchMovies);
-    on<ToggleFavoriteMovie>(_onToggleFavoriteMovie);
+    on<FetchFavoriteMovies>(_onFetchFavoriteMovies);
+    on<ToggleFavoriteMovie>((event, emit) async {
+      final currentState = state;
+
+      if (currentState is MovieLoaded) {
+        print('Toggling favorite for movie ID: ${event.movieId}');
+        final updatedMovies = currentState.movies.map((movie) {
+          if (movie.id == event.movieId) {
+            return movie.copyWith(isFavorite: !(movie.isFavorite ?? false));
+          }
+          return movie;
+        }).toList();
+
+        try {
+          MovieLoading();
+          await MovieService.favoriteMovie(movieID: event.movieId)
+              .then((_) {
+                emit(MovieLoaded(updatedMovies));
+              })
+              .catchError((error) {
+                print('Error toggling favorite: $error');
+              });
+          print('Emit updated state with toggled favorite movie');
+        } catch (e) {
+          emit(MovieError('Error toggling favorite: $e'));
+        }
+      }
+    });
   }
 
   Future<void> _onFetchMovies(
@@ -49,46 +76,35 @@ class MovieBloc extends Bloc<MovieEvent, MovieState> {
     }
   }
 
-  void _onToggleFavoriteMovie(
-    ToggleFavoriteMovie event,
+  Future<void> _onFetchFavoriteMovies(
+    FetchFavoriteMovies event,
     Emitter<MovieState> emit,
-  ) {
-    if (state is MovieLoaded) {
-      final currentMovies = (state as MovieLoaded).movies;
-      final updatedMovies = currentMovies.map((movie) {
-        if (movie.id == event.movieId) {
-          return Movie(
-            sId: movie.sId,
-            id: movie.id,
-            title: movie.title,
-            year: movie.year,
-            rated: movie.rated,
-            released: movie.released,
-            runtime: movie.runtime,
-            genre: movie.genre,
-            director: movie.director,
-            writer: movie.writer,
-            actors: movie.actors,
-            plot: movie.plot,
-            language: movie.language,
-            country: movie.country,
-            awards: movie.awards,
-            poster: movie.poster,
-            metascore: movie.metascore,
-            imdbRating: movie.imdbRating,
-            imdbVotes: movie.imdbVotes,
-            imdbID: movie.imdbID,
-            type: movie.type,
-            response: movie.response,
-            images: movie.images,
-            comingSoon: movie.comingSoon,
-            isFavorite: !(movie.isFavorite ?? false),
-          );
-        }
-        return movie;
-      }).toList();
+  ) async {
+    if (isFetching) return;
 
-      emit(MovieLoaded(updatedMovies));
+    isFetching = true;
+
+    try {
+      if (state is FavoriteMovieLoaded) {
+        final favoriteMovies = await MovieService.getFavoriteMovies();
+        if (favoriteMovies == null || favoriteMovies.isEmpty) {
+          emit(FavoriteMovieError('No favorite movies found'));
+          return;
+        }
+        emit(FavoriteMovieLoaded(favoriteMovies));
+      } else {
+        emit(FavoriteMovieLoading());
+        final movies = await MovieService.getFavoriteMovies();
+        if (movies == null || movies.isEmpty) {
+          emit(FavoriteMovieError('No movies found'));
+          return;
+        }
+        emit(FavoriteMovieLoaded(movies));
+      }
+    } catch (e) {
+      emit(MovieError('Error fetching movies: $e'));
+    } finally {
+      isFetching = false;
     }
   }
 }
