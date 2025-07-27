@@ -50,13 +50,20 @@ class _ExploreScreenState extends State<ExploreScreen> {
             return Center(child: Text(state.message));
           } else if (state is MovieLoaded) {
             final movies = state.movies;
-            return PageView.builder(
-              scrollDirection: Axis.vertical,
-              controller: _pageController,
-              itemCount: movies.length,
-              itemBuilder: (context, index) {
-                return ExploreCard(movie: movies[index]);
+            return RefreshIndicator(
+              color: Colors.white,
+              backgroundColor: Colors.black,
+              onRefresh: () async {
+                context.read<MovieBloc>().add(FetchMovies(page: 1));
               },
+              child: PageView.builder(
+                scrollDirection: Axis.vertical,
+                controller: _pageController,
+                itemCount: movies.length,
+                itemBuilder: (context, index) {
+                  return ExploreCard(movie: movies[index]);
+                },
+              ),
             );
           }
 
