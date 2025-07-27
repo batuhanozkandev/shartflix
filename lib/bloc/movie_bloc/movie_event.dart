@@ -6,6 +6,10 @@ class FetchMovies extends MovieEvent {
   FetchMovies({required this.page});
 }
 
+class FetchFavoriteMovies extends MovieEvent {
+  FetchFavoriteMovies();
+}
+
 class ToggleFavoriteMovie extends MovieEvent {
   final String movieId;
 

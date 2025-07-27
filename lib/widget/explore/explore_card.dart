@@ -1,28 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/bloc/auth_bloc/auth_bloc.dart';
+import 'package:shartflix/bloc/auth_bloc/auth_state.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
+import 'package:shartflix/model/movie/movie.dart';
 import 'package:shartflix/widget/button/follow_button.dart';
 import 'package:shartflix/widget/text/body/large.dart';
 import 'package:shartflix/widget/text/body/small.dart';
 import 'package:shartflix/widget/text/title/large.dart';
 
+import '../../bloc/movie_bloc/movie_bloc.dart';
+import '../../bloc/movie_bloc/movie_event.dart';
+import '../../bloc/movie_bloc/movie_state.dart';
 import '../../core/constant/color.dart';
 
 class ExploreCard extends StatelessWidget {
-  const ExploreCard({
-    super.key,
-    this.imageUrl,
-    this.logoUrl,
-    this.title,
-    this.subtitle,
-  });
+  const ExploreCard({super.key, this.movie});
 
-  final String? imageUrl;
-  final String? logoUrl;
-  final String? title;
-  final String? subtitle;
+  final Movie? movie;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +30,11 @@ class ExploreCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: imageUrl != null && imageUrl!.isNotEmpty
-                ? Image.network(imageUrl!, fit: BoxFit.cover)
+            child:
+                movie?.images != null &&
+                    movie?.images?[0] != null &&
+                    movie!.images![0].isNotEmpty
+                ? Image.network(movie!.images![0], fit: BoxFit.cover)
                 : Image.asset(
                     'assets/images/img_splash_sinflix.png',
                     fit: BoxFit.cover,
@@ -60,23 +61,40 @@ class ExploreCard extends StatelessWidget {
               width: 84.w,
               child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: ShartComponentFollowButton(
-                      onTap: () {},
-                      isLiked: true,
-                    ),
+                  BlocBuilder<MovieBloc, MovieState>(
+                    builder: (context, state) {
+                      if (state is MovieLoaded) {
+                        final targetMovie = state.movies.firstWhere(
+                          (m) => m.id == movie?.id,
+                        );
+
+                        final isFav = targetMovie.isFavorite ?? false;
+
+                        return Align(
+                          alignment: Alignment.centerRight,
+                          child: ShartComponentFollowButton(
+                              key: ValueKey(isFav),
+                            onTap: () => context.read<MovieBloc>().add(
+                              ToggleFavoriteMovie(targetMovie.id ?? ''),
+                            ),
+                            isLiked: isFav,
+                          ),
+                        );
+                      } else {
+                        return const SizedBox();
+                      }
+                    },
                   ),
                   Row(
                     children: [
                       SizedBox(
                         height: 5.h,
                         width: 5.h,
-                        child: logoUrl != null
+                        child: movie != null && movie!.images?[1] != null
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(1000),
                                 child: Image.network(
-                                  logoUrl!,
+                                  movie!.images![1],
                                   fit: BoxFit.cover,
                                 ),
                               )
@@ -94,16 +112,16 @@ class ExploreCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (title != null)
+                            if (movie?.title != null)
                               ShartComponentLargeBody(
-                                text: title!,
+                                text: movie!.title!,
                                 isBold: true,
                                 maxLines: 1,
                               ),
-                            if (subtitle != null)
+                            if (movie?.title != null)
                               RichText(
                                 text: TextSpan(
-                                  text: subtitle,
+                                  text: movie!.title!,
                                   style: Get.theme.textTheme.bodySmall!
                                       .copyWith(color: ColorConstants.darkText),
                                   children: [

@@ -44,7 +44,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       body: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
-          if (state is MovieLoading && state is! MovieLoaded) {
+          if (state is MovieLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is MovieError) {
             return Center(child: Text(state.message));
@@ -55,14 +55,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               controller: _pageController,
               itemCount: movies.length,
               itemBuilder: (context, index) {
-                final movie = movies[index];
-                return ExploreCard(
-                  imageUrl:
-                      movies[index].images?[0] ??
-                      'https://via.placeholder.com/150',
-                  title: movie.title ?? 'No Title',
-                  subtitle: movie.director ?? '',
-                );
+                return ExploreCard(movie: movies[index]);
               },
             );
           }
