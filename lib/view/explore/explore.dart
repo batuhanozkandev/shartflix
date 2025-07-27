@@ -28,9 +28,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
       _pageController.addListener(() {
         final bloc = context.read<MovieBloc>();
         final currentPage = bloc.currentPage;
-
         if (_pageController.hasClients && _pageController.page != null) {
-          final threshold = currentPage * 10 - 3;
+          final threshold = currentPage * 4;
 
           if (_pageController.page!.toInt() >= threshold) {
             bloc.add(FetchMovies(page: currentPage + 1));
@@ -40,12 +39,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      BlocBuilder<MovieBloc, MovieState>(
+      body: BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
           if (state is MovieLoading && state is! MovieLoaded) {
             return const Center(child: CircularProgressIndicator());
@@ -60,8 +57,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
               itemBuilder: (context, index) {
                 final movie = movies[index];
                 return ExploreCard(
-                  imageUrl: movies[index].images?[0] ??
-                            'https://via.placeholder.com/150',
+                  imageUrl:
+                      movies[index].images?[0] ??
+                      'https://via.placeholder.com/150',
                   title: movie.title ?? 'No Title',
                   subtitle: movie.director ?? '',
                 );

@@ -32,10 +32,10 @@ class ExploreCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: imageUrl != null
+            child: imageUrl != null && imageUrl!.isNotEmpty
                 ? Image.network(imageUrl!, fit: BoxFit.cover)
                 : Image.asset(
-                    'assets/images/img_logo_sinflix.png',
+                    'assets/images/img_splash_sinflix.png',
                     fit: BoxFit.cover,
                   ),
           ),
@@ -98,6 +98,7 @@ class ExploreCard extends StatelessWidget {
                               ShartComponentLargeBody(
                                 text: title!,
                                 isBold: true,
+                                maxLines: 1,
                               ),
                             if (subtitle != null)
                               RichText(

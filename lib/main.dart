@@ -11,6 +11,7 @@ import 'package:shartflix/view/components.dart';
 import 'package:shartflix/view/explore/explore.dart';
 import 'package:shartflix/view/main/main_screen.dart';
 import 'package:shartflix/view/profile/add_profile_photo_screen.dart';
+import 'package:shartflix/view/splash/splash_screen.dart';
 
 import 'bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'bloc/user_bloc/user_bloc.dart';
@@ -25,8 +26,6 @@ void main() async {
   await App.init();
 
   final themeController = Get.put(ThemeController());
-  bool hasToken = App.hasToken();
-  print('Has Token : $hasToken');
   Future.delayed(
     10.milliseconds,
     () => runApp(
@@ -34,19 +33,7 @@ void main() async {
         translations: Languages(),
         title: 'Shartflix',
         debugShowCheckedModeBanner: false,
-        home: MultiBlocProvider(
-          providers: [
-            BlocProvider<BottomNavBarBloc>(create: (_) => BottomNavBarBloc()),
-            BlocProvider<UserBloc>(
-              create: (_) => UserBloc()..add(FetchUserProfile()),
-            ),
-            BlocProvider<MovieBloc>(
-              create: (_) => MovieBloc()..add(FetchMovies(page: 1)),
-            ),
-          ],
-          child: LogInScreen(),
-          //hasToken ? const MainScreen() : const LogInScreen(),
-        ),
+        home: SplashScreen(),
         theme: themeController.lightTheme,
         routes: AppRoutes.routes,
       ),
