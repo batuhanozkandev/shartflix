@@ -7,6 +7,7 @@ import 'package:shartflix/routes/routes.dart';
 import 'package:shartflix/view/auth/log_in_screen.dart';
 import 'package:shartflix/view/auth/sign_up_screen.dart';
 import 'package:shartflix/view/components.dart';
+import 'package:shartflix/view/explore/explore.dart';
 import 'package:shartflix/view/main/main_screen.dart';
 import 'package:shartflix/view/profile/add_profile_photo_screen.dart';
 

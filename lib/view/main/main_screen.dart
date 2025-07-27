@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shartflix/view/auth/log_in_screen.dart';
+import 'package:shartflix/view/explore/explore.dart';
 import 'package:shartflix/view/profile/add_profile_photo_screen.dart';
 import 'package:shartflix/widget/button/bottom_nav_button.dart';
 
@@ -25,7 +26,7 @@ class MainScreen extends StatelessWidget {
             body: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: state.pageController,
-              children: [LogInScreen(), ProfileScreen()],
+              children: [ExploreScreen(), ProfileScreen()],
             ),
           );
         },

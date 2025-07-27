@@ -92,6 +92,7 @@ class Offer extends StatelessWidget {
                   BonusRow(),
                   4.yh,
                   ShartComponentPrimaryButton(
+                    height: 6.h,
                     text: 'Tüm Jetonları Gör',
                     onTap: null,
                   ),

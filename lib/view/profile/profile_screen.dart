@@ -57,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
                 controller: _scrollController,
                 child: Column(
                   children: [
-                    ShartAppBar(isActiveLimitedOfferButton: true),
+                    ShartAppBar(isActiveLimitedOfferButton: true, hasBackButton: false,),
                     4.yh,
                     SizedBox(
                       width: 92.w,
