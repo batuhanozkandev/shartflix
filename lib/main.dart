@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:shartflix/bloc/auth_bloc/auth_bloc.dart';
 import 'package:shartflix/bloc/movie_bloc/movie_bloc.dart';
 import 'package:shartflix/bloc/movie_bloc/movie_event.dart';
 import 'package:shartflix/routes/routes.dart';
@@ -43,9 +44,9 @@ void main() async {
               create: (_) => MovieBloc()..add(FetchMovies(page: 1)),
             ),
           ],
-          child: MainScreen(),
+          child: LogInScreen(),
+          //hasToken ? const MainScreen() : const LogInScreen(),
         ),
-        //hasToken ? const MainScreen() : const WelcomeScreen(),
         theme: themeController.lightTheme,
         routes: AppRoutes.routes,
       ),

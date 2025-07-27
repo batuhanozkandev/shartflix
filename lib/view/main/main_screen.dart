@@ -23,10 +23,12 @@ class MainScreen extends StatelessWidget {
             extendBody: true,
             extendBodyBehindAppBar: true,
             bottomNavigationBar: ShartBottomNavBar(),
-            body: PageView(
+            body:
+            PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: state.pageController,
-              children: [ExploreScreen(), ProfileScreen()],
+              children: [
+                ExploreScreen(), ProfileScreen()],
             ),
           );
         },

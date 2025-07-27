@@ -21,23 +21,31 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<MovieBloc>().add(FetchMovies(page: 1));
-    _pageController.addListener(() {
-      final bloc = context.read<MovieBloc>();
-      final currentPage = bloc.currentPage;
-      final thresholdIndex = currentPage * 10 - 3;
 
-      if (_pageController.page != null &&
-          _pageController.page!.toInt() >= thresholdIndex) {
-        bloc.add(FetchMovies(page: currentPage + 1));
-      }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<MovieBloc>().add(FetchMovies(page: 1));
+
+      _pageController.addListener(() {
+        final bloc = context.read<MovieBloc>();
+        final currentPage = bloc.currentPage;
+
+        if (_pageController.hasClients && _pageController.page != null) {
+          final threshold = currentPage * 10 - 3;
+
+          if (_pageController.page!.toInt() >= threshold) {
+            bloc.add(FetchMovies(page: currentPage + 1));
+          }
+        }
+      });
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<MovieBloc, MovieState>(
+      body:
+      BlocBuilder<MovieBloc, MovieState>(
         builder: (context, state) {
           if (state is MovieLoading && state is! MovieLoaded) {
             return const Center(child: CircularProgressIndicator());
@@ -52,12 +60,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
               itemBuilder: (context, index) {
                 final movie = movies[index];
                 return ExploreCard(
-                  imageUrl:
-                      (movies[index].poster != null &&
-                          movies[index].poster!.isNotEmpty
-                      ? movies[index].poster
-                      : movies[index].images?[0] ??
-                            'https://via.placeholder.com/150'),
+                  imageUrl: movies[index].images?[0] ??
+                            'https://via.placeholder.com/150',
                   title: movie.title ?? 'No Title',
                   subtitle: movie.director ?? '',
                 );
