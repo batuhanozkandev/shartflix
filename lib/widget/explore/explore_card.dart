@@ -1,16 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:shartflix/bloc/auth_bloc/auth_bloc.dart';
-import 'package:shartflix/bloc/auth_bloc/auth_state.dart';
-import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/model/movie/movie.dart';
 import 'package:shartflix/widget/button/follow_button.dart';
 import 'package:shartflix/widget/text/body/large.dart';
-import 'package:shartflix/widget/text/body/small.dart';
-import 'package:shartflix/widget/text/title/large.dart';
 
 import '../../bloc/movie_bloc/movie_bloc.dart';
 import '../../bloc/movie_bloc/movie_event.dart';
@@ -73,7 +67,7 @@ class ExploreCard extends StatelessWidget {
                         return Align(
                           alignment: Alignment.centerRight,
                           child: ShartComponentFollowButton(
-                              key: ValueKey(isFav),
+                            key: ValueKey(isFav),
                             onTap: () => context.read<MovieBloc>().add(
                               ToggleFavoriteMovie(targetMovie.id ?? ''),
                             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:shartflix/widget/text/body/medium.dart';
 

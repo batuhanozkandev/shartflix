@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:shartflix/cache/cache.dart';
 import 'package:shartflix/controller/base/base.dart';
 import 'package:shartflix/helper/snack_bar/snack_bar.dart';
-import 'package:shartflix/model/user/user.dart';
 import 'package:shartflix/routes/routes.dart';
 
 import '../../controller/server/api/server_controller.dart';

@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:shartflix/controller/base/base.dart';
 
 import '../../controller/server/api/server_controller.dart';

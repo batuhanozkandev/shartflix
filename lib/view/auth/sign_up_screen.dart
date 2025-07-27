@@ -8,7 +8,6 @@ import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/service/auth/auth.dart';
 import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
-import 'package:shartflix/widget/text/body/large.dart';
 import 'package:shartflix/widget/text/title/small.dart';
 
 import '../../bloc/auth_bloc/auth_bloc.dart';

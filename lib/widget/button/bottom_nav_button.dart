@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +8,6 @@ import 'package:shartflix/widget/text/body/small.dart';
 
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
-import '../text/body/medium.dart';
 
 class _ShartComponentBottomNavButton extends StatelessWidget {
   const _ShartComponentBottomNavButton({super.key, this.onTap, required this.text, required this.iconPath});

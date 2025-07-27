@@ -3,15 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:shartflix/bloc/movie_bloc/movie_bloc.dart';
 import 'package:shartflix/bloc/user_bloc/user_bloc.dart';
-import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/helper/app.dart';
-import 'package:shartflix/view/auth/log_in_screen.dart';
 import 'package:shartflix/view/explore/explore.dart';
-import 'package:shartflix/view/profile/add_profile_photo_screen.dart';
 import 'package:shartflix/widget/button/bottom_nav_button.dart';
-
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
-import '../../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
 import '../../bloc/bottom_nav_bar/bottom_nav_bar_state.dart';
 import '../../bloc/movie_bloc/movie_event.dart';
 import '../../bloc/user_bloc/user_event.dart';

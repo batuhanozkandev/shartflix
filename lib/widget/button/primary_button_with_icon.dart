@@ -3,10 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
-import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/widget/text/body/small.dart';
-
-import '../text/body/medium.dart';
 
 class ShartComponentPrimaryButtonWithIcon extends StatelessWidget {
   const ShartComponentPrimaryButtonWithIcon({

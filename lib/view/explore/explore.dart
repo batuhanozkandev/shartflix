@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shartflix/core/extention/numX.dart';
-
 import '../../bloc/movie_bloc/movie_bloc.dart';
 import '../../bloc/movie_bloc/movie_event.dart';
 import '../../bloc/movie_bloc/movie_state.dart';
-import '../../widget/button/back_button.dart';
 import '../../widget/explore/explore_card.dart';
 
 class ExploreScreen extends StatefulWidget {

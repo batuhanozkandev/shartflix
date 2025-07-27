@@ -24,15 +24,11 @@ class BaseScreen extends StatelessWidget {
     this.onTopSuffix,
   }) : super(key: key);
 
-  //
   final Widget mobile;
   final Widget? tablet;
   final Widget? desktop;
   final Widget? watch;
   final bool? hasBottomNavBar;
-
-  //
-
   final bool? hasAppBar;
   final Widget? customAppBar;
   final bool? hasScrollable;

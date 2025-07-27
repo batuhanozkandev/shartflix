@@ -5,21 +5,16 @@ import 'package:get/get.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/extention/numX.dart';
 import 'package:shartflix/routes/routes.dart';
-import 'package:shartflix/service/user/user.dart';
-import 'package:shartflix/view/base/base_screen.dart';
 import 'package:shartflix/widget/app_bar/app_bar.dart';
 import 'package:shartflix/widget/button/primary_button.dart';
 import 'package:shartflix/widget/text/body/medium.dart';
 import 'package:shartflix/widget/text/body/small.dart';
 
 import '../../bloc/movie_bloc/movie_bloc.dart';
-import '../../bloc/movie_bloc/movie_event.dart';
 import '../../bloc/movie_bloc/movie_state.dart';
 import '../../bloc/user_bloc/user_bloc.dart';
 import '../../bloc/user_bloc/user_state.dart';
-import '../../model/user/user.dart';
 import '../../widget/card/movie.dart';
-import '../../widget/text/body/large.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -40,7 +35,6 @@ class ProfileScreen extends StatelessWidget {
             } else if (state is UserError) {
               return Center(child: Text(state.message));
             } else if (state is UserLoaded) {
-
               return SingleChildScrollView(
                 controller: _scrollController,
                 child: Column(
@@ -140,9 +134,11 @@ class ProfileScreen extends StatelessWidget {
                                     state.favoriteMovies[index].poster ??
                                     'https://via.placeholder.com/150'),
                                 title:
-                                    state.favoriteMovies[index].title ?? 'Movie Title',
+                                    state.favoriteMovies[index].title ??
+                                    'Movie Title',
                                 subtitle:
-                                    state.favoriteMovies[index].director ?? 'Director',
+                                    state.favoriteMovies[index].director ??
+                                    'Director',
                               );
                             },
                           );

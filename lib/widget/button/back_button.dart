@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shartflix/cache/cache.dart';
 import 'package:shartflix/core/constant/color.dart';
 import 'package:shartflix/core/constant/padding.dart';
 import 'package:shartflix/core/constant/radius.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shartflix/core/extention/numX.dart';
-import 'package:shartflix/service/auth/auth.dart';
-import 'package:shartflix/service/user/user.dart';
 
 class ShartComponentBackButton extends StatelessWidget {
   const ShartComponentBackButton({super.key, this.isFilled = false});

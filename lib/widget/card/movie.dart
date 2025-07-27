@@ -9,8 +9,6 @@ import '../text/body/medium.dart';
 class MovieCard extends StatelessWidget {
   const MovieCard({super.key, required this.imageUrl, required this.title, required this.subtitle});
 
-  //'https://via.placeholder.com/150'
-
   final String imageUrl;
   final String title;
   final String subtitle;
@@ -20,7 +18,6 @@ class MovieCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        //Card Image
         Container(
           height: 24.h,
           width: 36.w,
