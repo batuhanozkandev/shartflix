@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(const Duration(seconds: 2), () {
       Get.offAndToNamed(
-        !hasToken ? AppPages.mainScreen : AppPages.logInScreen,
+        hasToken ? AppPages.mainScreen : AppPages.logInScreen,
       ); // ya da '/home'
     });
   }
