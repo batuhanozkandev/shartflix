@@ -121,7 +121,7 @@ class ExploreCard extends StatelessWidget {
                             if (movie?.title != null)
                               RichText(
                                 text: TextSpan(
-                                  text: movie!.title!,
+                                  text: movie!.writer!,
                                   style: Get.theme.textTheme.bodySmall!
                                       .copyWith(color: ColorConstants.darkText),
                                   children: [
